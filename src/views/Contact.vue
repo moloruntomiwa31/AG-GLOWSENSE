@@ -4,7 +4,7 @@
     <section
       class="relative flex flex-col-reverse md:flex-row items-center justify-around p-8 space-y-6 md:space-y-0 min-h-[50vh] lg:min-h-[100vh]"
     >
-      <div class="md:w-1/2 p-4" data-aos="fade-up">
+      <div class="md:w-1/2 p-4">
         <img
           src="../assets/products/organicBodyButter.jpg"
           alt="AG-glowsense product image"
@@ -13,7 +13,6 @@
       </div>
       <div
         class="flex-col flex md:w-[600px] space-y-4 text-center items-center"
-        data-aos="fade-up"
       >
         <h1 class="text-4xl font-bold text-red-400">
           GOT A SKINCARE QUESTION?
@@ -31,13 +30,13 @@
       </div>
     </section>
     <!-- faq -->
-    <section id="faq" data-aos="fade-up">
+    <section id="faq">
       <h1 class="text-4xl text-center font-sans">Frequently Asked Questions</h1>
-      <FAQ :faqs="faqs" data-aos="fade-up" />
+      <FAQ :faqs="faqs" />
     </section>
 
     <!-- contact body -->
-    <section id="contact" data-aos="fade-up">
+    <section id="contact">
       <h1 class="text-4xl text-center font-sans">Get in Touch</h1>
       <p class="text-center text-lg text-[#4d4141]">
         Get your words and thoughts across, we’ll be glad to respond.

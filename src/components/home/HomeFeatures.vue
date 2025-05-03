@@ -7,12 +7,10 @@
         Benefit Our Services
       </h1>
     </div>
-    <div class="grid place-items-center p-12 space-y-8 w-full">
+    <div class="grid place-items-center px-12 space-y-8 w-full">
       <div
         v-for="product in productDetails"
         :key="product.title"
-        data-aos="fade-up"
-        data-aos-once="false"
         class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:gap-4 mx-auto items-center justify-center"
         :class="product.reverse ? 'md:flex-row-reverse' : ''"
       >

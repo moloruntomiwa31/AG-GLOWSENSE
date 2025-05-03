@@ -33,6 +33,9 @@
       <RouterLink class="linkStyles" active-class="active" to="/blogs"
         >Blogs</RouterLink
       >
+      <RouterLink class="linkStyles" active-class="active" to="/chat"
+        >Chat With Us</RouterLink
+      >
     </nav>
     <template v-if="userData.userSet">
       <div
@@ -79,15 +82,18 @@
   </header>
   <!-- mobile -->
   <div
-    class="fixed bottom-0 w-full h-[70px] flex justify-around items-center px-2 shadow-md bg-neutral-50 rounded-tl-3xl rounded-tr-3xl text-[#463333] lg:hidden z-index">
+    class="fixed bottom-0 w-full h-[50px] flex justify-around items-center px-2 shadow-md bg-neutral-50 rounded-tl-3xl rounded-tr-3xl text-[#463333] lg:hidden z-index"
+  >
     <RouterLink
-      class="flex flex-col justify-between items-center w-1/4 h-full relative py-4"
+      class="flex flex-col justify-between items-center w-1/5 h-full relative py-4"
       v-for="data in mobileNav"
       :key="data.text"
-      :to="data.link">
+      :to="data.link"
+    >
       <div
         v-if="route.path === data.link"
-        class="absolute top-0 left-0 w-full h-2 bg-red-400 rounded-tl-3xl rounded-tr-3xl"></div>
+        class="absolute bottom-1 left-1/6 w-1/5 h-1 bg-red-400 rounded-3xl"
+      ></div>
       <div class="flex-grow"></div>
       <img :src="data.image" :alt="data.text" class="w-6 h-6" />
     </RouterLink>
@@ -104,6 +110,7 @@ import image1 from "../../assets/homeSvg/home.svg";
 import image2 from "../../assets/homeSvg/about.svg";
 import image3 from "../../assets/homeSvg/product.svg";
 import image4 from "../../assets/homeSvg/blog.svg";
+import image5 from "../../assets/homeSvg/chat.svg";
 import Button from "./Button.vue";
 import { useToast } from "../../store/toast";
 const toast = useToast();
@@ -141,6 +148,11 @@ const mobileNav = ref([
     image: image4,
     text: "Blogs",
     link: "/blogs",
+  },
+  {
+    image: image5,
+    text: "AI",
+    link: "/chat",
   },
 ]);
 </script>

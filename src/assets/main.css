@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ysabeau+Office&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,12 +14,10 @@ body {
 }
 
 .mainStyles {
-    @apply mx-auto flex  justify-between xs:px-1 sm:px-4 lg:px-16 py-4
+    @apply mx-auto flex  justify-between px-1 sm:px-4 lg:px-16 py-4
 }
 
 h1 {font-family: 'Kanit', sans-serif;}
-
-/* .active {@apply font-bold} */
 
 .linkStyles {
     @apply p-4 hover:text-red-300 duration-300

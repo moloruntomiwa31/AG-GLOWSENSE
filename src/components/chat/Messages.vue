@@ -1,10 +1,11 @@
 <template>
   <div
     :class="[
-      'p-4 rounded-md mb-4',
-      message.isUser ? 'bg-pink-100 ml-auto' : 'bg-gray-100 mr-auto',
+      'p-3 max-w-[80%] rounded-lg shadow text-sm break-words mt-4',
+      message.isUser
+        ? 'bg-blue-100 text-right ml-auto'
+        : 'bg-gray-200 text-left mr-auto',
     ]"
-    style="max-width: 80%"
   >
     {{ message.content }}
   </div>
@@ -12,18 +13,21 @@
 
 <script setup>
 defineProps({
-  message: Object,
+  message: {
+    type: Object,
+    required: true,
+  },
 });
 </script>
 
 <style scoped>
 .message-enter-active,
 .message-leave-active {
-  transition: opacity 0.5s ease;
+  transition: all 0.3s ease;
 }
-
 .message-enter-from,
 .message-leave-to {
   opacity: 0;
+  transform: translateY(10px);
 }
 </style>

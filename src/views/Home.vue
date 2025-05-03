@@ -2,26 +2,34 @@
   <PreLoader v-if="isLoading" />
   <main v-else>
     <!-- hero -->
-    <section class="hero min-h-[100vh]">
-      <div
-        class="hero-text md:w-1/2 space-y-2"
-      >
-        <h1 class="text-white text-[3rem] md:text-[4rem] font-extrabold lg:w-[85%]">
+    <!-- Hero Section -->
+    <section class="hero min-h-[400px] lg:h-screen relative flex items-center">
+      <div class="absolute inset-0 bg-black/60 z-0"></div>
+
+      <div class="relative z-10 px-6 md:px-16 w-full max-w-3xl space-y-4">
+        <h1
+          class="text-white text-5xl md:text-6xl lg:text-7xl font-extrabold"
+        >
           Treat your skin<span class="text-red-300"> with nature.</span>
         </h1>
+
+        <p class="text-white text-lg md:text-xl max-w-md">
+          Keep your body well groomed and enjoy treatment services from us. Get
+          attractive discounts today.
+        </p>
+
         <Button
           @click="router.push('/products')"
-          class="bg-white border-red-300 p-4 border-2 hover:border-red-400 hover:bg-red-300 hover:text-white duration-300 font-[900]"
-          >Explore Products</Button
+          class="bg-white text-red-400 border-2 border-red-300 p-4 font-extrabold hover:bg-red-300 hover:text-white hover:border-red-400 transition duration-300"
         >
-        <p class="text-white md:w-[50%] text-xl w-3/4">
-          Keep your body well groomed and enjoy treatment services from us from
-          now on and get attractive discounts.
-        </p>
+          Explore Products
+        </Button>
       </div>
+
+      <!-- Scroll Down Button -->
       <DownButton
         @scroll="scrollTosection('features')"
-        class="hidden md:block border-2 border-white p-2 absolute md:bottom-[12rem] lg:bottom-24 left-[50%] hover:bg-white duration-200"
+        class="hidden md:block absolute left-1/2 bottom-20 transform -translate-x-1/2 border-2 border-white p-2 hover:bg-white transition duration-200 z-10"
       />
     </section>
 
@@ -97,27 +105,11 @@ const photos = [icon1, icon2, icon4, icon5];
 </script>
 
 <style scoped>
-.hero-text {
-  position: absolute;
-  top: 40%;
-  left: 10%;
-  transform: translateY(-50%);
-}
-
-.hero::before {
-  position: absolute;
-  background-color: rgba(0 0 0 / 50%);
-  content: "";
-  inset: 0;
-}
-
 .hero {
-  min-width: 100%;
   background-image: url("../assets/womans-bust-hand-shoulder.jpg");
   background-repeat: no-repeat;
   background-position: right;
   background-size: cover;
-  position: relative;
 }
 
 .swiper {

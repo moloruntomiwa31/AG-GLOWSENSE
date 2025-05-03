@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col md:flex-row justify-center mt-6 mb-6 mx-12" data-aos="fade-up">
+    <div class="flex flex-col md:flex-row justify-center mt-6 mb-6 mx-12">
         <div class="w-full xl:w-[25%] grid place-items-center bg-[#FDF6F0] md:rounded-l-md p-4 rounded-t-md">
             <div class="p-4 w-full space-y-8">
                 <div class="space-y-3" v-for="details in contactDetails" :key="details">

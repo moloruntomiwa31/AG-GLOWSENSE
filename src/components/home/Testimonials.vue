@@ -14,8 +14,6 @@
         class="test p-8 md:h-[100%] shadow space-y-4 md:space-y-0 rounded-md"
         v-for="testimonial in testimonials"
         :key="testimonial.name"
-        data-aos="fade-up"
-        data-aos-once="false"
       >
         <div class="flex gap-2 items-start justify-center">
           <div class="space-y-2 text-lg">

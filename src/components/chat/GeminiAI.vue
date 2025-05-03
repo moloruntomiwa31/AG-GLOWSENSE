@@ -1,34 +1,37 @@
 <template>
-  <div class="flex flex-col h-[75vh] md:h-[80vh]">
-    <div class="flex-grow overflow-y-auto p-4">
-      <h1 v-if="messages.length === 0" class="text-2xl">
-        Hello I'm your AI Chat Assistant, ask me anything, I'm happy to help...
-      </h1>
-      <div v-else class="pb-4 text-2xl font-bold text-center">Let's chat</div>
+  <div class="flex flex-col h-full">
+    <!-- Chat history -->
+    <div class="flex-grow overflow-y-auto space-y-2 p-4">
+      <div v-if="messages.length === 0" class="text-gray-500 text-center mt-10 text-2xl">
+        🤖 Hello, I'm your Beauty AI Assistant. Ask me anything!
+      </div>
       <TransitionGroup name="message" tag="div">
         <Messages
+          v-for="(message, index) in messages"
+          :key="index"
           :message="message"
-          v-for="message in messages"
-          :key="message.content"
         />
       </TransitionGroup>
     </div>
+
+    <!-- Input field -->
     <form
-      class="bg-pink-100 p-4 flex gap-2 rounded-lg"
+      class="flex items-center gap-2 border-t p-4 bg-white"
       @submit.prevent="fetchAnswer"
     >
       <input
-        placeholder="Enter the question"
-        class="flex-grow p-4 rounded-md"
         v-model="inputQuestion"
+        type="text"
+        placeholder="Type a message..."
+        class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
-      <Button
+      <button
+        :disabled="!inputQuestion || isLoading"
         type="submit"
-        :disabled="!inputQuestion"
-        class="bg-red-400 p-3 rounded text-white w-14 h-14 cursor-pointer hover:bg-red-300"
+        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:opacity-50"
       >
-        {{ `${isLoading ? "......" : "Ask"}` }}
-      </Button>
+        {{ isLoading ? "..." : "Send" }}
+      </button>
     </form>
   </div>
 </template>
@@ -36,29 +39,30 @@
 <script setup>
 import { ref } from "vue";
 import { useGetGenerativeModelGP } from "../../composables/useGetGenerativeModelGP.js";
-import Button from "../fixed/Button.vue";
 import Messages from "./Messages.vue";
 
 const inputQuestion = ref("");
 const messages = ref([]);
-const aiAnswer = ref("");
 const isLoading = ref(false);
 
 const fetchAnswer = async () => {
   if (!inputQuestion.value.trim()) return;
   isLoading.value = true;
+
   messages.value.push({ content: inputQuestion.value, isUser: true });
 
   try {
-    aiAnswer.value = await useGetGenerativeModelGP(inputQuestion.value);
-    messages.value.push({ content: aiAnswer.value, isUser: false });
+    const aiReply = await useGetGenerativeModelGP(inputQuestion.value);
+    messages.value.push({ content: aiReply, isUser: false });
   } catch (error) {
-    console.log({ error });
+    messages.value.push({
+      content: "⚠️ Sorry, something went wrong.",
+      isUser: false,
+    });
+    console.error(error);
   } finally {
-    isLoading.value = false;
     inputQuestion.value = "";
+    isLoading.value = false;
   }
 };
 </script>
-
-<style scoped></style>

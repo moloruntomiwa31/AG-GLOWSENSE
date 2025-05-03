@@ -1,11 +1,9 @@
 <template>
   <div>
-    <GeminiAI />
+    <ChatLayout />
   </div>
 </template>
 
 <script setup>
-import GeminiAI from "../components/chat/GeminiAI.vue";
+import ChatLayout from "../components/chat/ChatLayout.vue";
 </script>
-
-<style scoped></style>

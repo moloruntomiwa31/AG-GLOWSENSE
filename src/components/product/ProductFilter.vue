@@ -5,7 +5,7 @@
         class="inline-flex justify-between items-center p-2 ml-auto rounded-lg text-white bg-red-500 border w-[150px] focus:shadow-md focus:shadow-purple-primary focus:border-purple-secondary"
         ><span>{{ selectedOption.toUpperCase() }}</span>
         <svg
-          :class="{ 'rotate-0': open }"
+          :class="{ 'rotate-[270]': open }"
           class="transition-transform duration-300 rotate-180"
           xmlns="http://www.w3.org/2000/svg"
           width="20"

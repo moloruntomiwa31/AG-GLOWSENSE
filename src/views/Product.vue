@@ -1,31 +1,29 @@
 <template>
   <PreLoader v-if="isLoading" />
   <main class="space-y-8 md:space-y-0 md:p-2" v-else>
-    <div class="w-full my-4">
-      <h1 class="text-[2rem] font-bold capitalize text-center text-[#463333]">
+    <div class="w-full my-8 px-4 md:px-8">
+      <!-- Section Title -->
+      <h1 class="text-3xl font-bold text-center text-[#463333] mb-6">
         Available Products
       </h1>
-    </div>
-    <!-- search box -->
-    <div
-      class="flex flex-col md:flex-row gap-4 justify-center items-center md:justify-between md:px-8"
-    >
-      <!-- filter -->
-      <div class="flex items-center gap-4">
-        <h3 class="font-bold">Filter By</h3>
-        <ProductFilter
-          @update:modelValue="updateOption"
-          :options="productOptions"
-        />
-      </div>
-      <!-- input -->
-      <div class="flex items-center md:justify-end gap-2">
-        <Input
-          v-model="searchProduct"
-          type="text"
-          class="border-2 border-red-400 p-2 md:p-4 outline-none placeholder:text-black"
-          :placeholder="searchPlaceholder"
-        ></Input>
+
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="flex items-center gap-4 w-full md:w-auto">
+          <h3 class="font-semibold text-base whitespace-nowrap">Filter By</h3>
+          <ProductFilter
+            @update:modelValue="updateOption"
+            :options="productOptions"
+          />
+        </div>
+
+        <div class="w-full md:w-1/2">
+          <Input
+            v-model="searchProduct"
+            type="text"
+            class="w-full border-2 border-red-400 p-3 rounded-md placeholder:text-black focus:outline-none focus:ring-2 focus:ring-red-300"
+            :placeholder="searchPlaceholder"
+          />
+        </div>
       </div>
     </div>
 
@@ -47,7 +45,7 @@ const route = useRoute();
 
 //getProducts
 const productStore = useProductStore();
-const productOptions = ['all', 'bodyWash', 'faceWash', 'vive']
+const productOptions = ["all", "bodyWash", "faceWash", "vive"];
 //preloader
 const isLoading = ref(true);
 

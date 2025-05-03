@@ -12,10 +12,9 @@ module.exports = {
         mono: ['CustomMono', 'monospace'],
       },
       screens: {
-        'xs': '260px',
-        'sm': '360px',
-        'md': '640px',
-        'lg': '960px'
+        'sm': '410px',
+        'md': '768px',
+        'lg': '1000px'
       }
     },
   },

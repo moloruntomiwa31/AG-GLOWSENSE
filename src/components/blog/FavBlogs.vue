@@ -6,7 +6,6 @@
       class="w-[75%] md:w-[300px]"
       v-for="blog in blogStore.getFavBlogs"
       :key="blog.id"
-      data-aos="fade-up"
       v-if="blogStore.getFavBlogs"
     >
       <div class="relative">
