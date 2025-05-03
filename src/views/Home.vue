@@ -6,7 +6,7 @@
       <div
         class="hero-text md:w-1/2 space-y-2"
       >
-        <h1 class="text-white text-[3rem] md:text-[4rem] font-[900] lg:w-[85%]">
+        <h1 class="text-white text-[3rem] md:text-[4rem] font-extrabold lg:w-[85%]">
           Treat your skin<span class="text-red-300"> with nature.</span>
         </h1>
         <Button
@@ -14,7 +14,7 @@
           class="bg-white border-red-300 p-4 border-2 hover:border-red-400 hover:bg-red-300 hover:text-white duration-300 font-[900]"
           >Explore Products</Button
         >
-        <p class="text-white md:w-[50%] text-xl font-[300] w-3/4">
+        <p class="text-white md:w-[50%] text-xl w-3/4">
           Keep your body well groomed and enjoy treatment services from us from
           now on and get attractive discounts.
         </p>
