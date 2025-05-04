@@ -5,9 +5,10 @@
   </Transition>
   <RouterView />
   <a
+    v-if="route.path !== '/chat'"
     href="https://wa.me/+2348113005790"
     target="_blank"
-    class="fixed bottom-[12rem] md:bottom-4 lg:bottom-32 right-[3%] outline-dotted rounded-full outline-red-300 p-2 z-10"
+    class="fixed bottom-16 lg:bottom-28 right-[3%] outline-dotted rounded-full outline-red-300 p-2 z-10"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
