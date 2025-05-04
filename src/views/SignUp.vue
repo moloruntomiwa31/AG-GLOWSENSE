@@ -16,16 +16,15 @@ import { useToast } from "../store/toast";
 import { useRouter } from "vue-router";
 import { RouterLink } from "vue-router";
 import RegisterForm from "../components/fixed/RegisterForm.vue";
-
 const userData = useUserStore();
 const toast = useToast();
 const router = useRouter();
 const buttonText = ref("Sign Up");
-
+// submit
 const submitForm = (email, password, firstName, lastName, phoneNumber) => {
   signUp(email, password, firstName, lastName, phoneNumber);
 };
-
+// submit the form and sign up the user
 const signUp = async (email, password, firstName, lastName, phoneNumber) => {
   try {
     await userData.signUp(email, password, firstName, lastName, phoneNumber);

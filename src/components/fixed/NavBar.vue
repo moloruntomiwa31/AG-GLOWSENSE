@@ -27,6 +27,9 @@
       <RouterLink class="linkStyles" active-class="active" to="/about"
         >About</RouterLink
       >
+      <RouterLink to="/contacts" active-class="active">
+        <p>Contact</p>
+      </RouterLink>
       <RouterLink class="linkStyles" active-class="active" to="/products"
         >Products</RouterLink
       >
@@ -54,14 +57,6 @@
             <p class="text-red-200">{{ store.cartLength }}</p>
           </div>
         </RouterLink>
-        <RouterLink
-          to="/contacts"
-          class="hover:text-red-300 duration-150"
-          active-class="active"
-        >
-          <img src="../../assets/contact.svg" alt="Contact" />
-          <p>Contact</p>
-        </RouterLink>
         <Button class="bg-red-300 p-2 mt-1 hover:bg-red-400" @click="logOut"
           >LogOut</Button
         >
@@ -79,15 +74,18 @@
   </header>
   <!-- mobile -->
   <div
-    class="fixed bottom-0 w-full h-[70px] flex justify-around items-center px-2 shadow-md bg-neutral-50 rounded-tl-3xl rounded-tr-3xl text-[#463333] lg:hidden z-index">
+    class="fixed bottom-0 w-full h-[70px] flex justify-around items-center px-2 shadow-md bg-neutral-50 rounded-tl-3xl rounded-tr-3xl text-[#463333] lg:hidden z-index"
+  >
     <RouterLink
       class="flex flex-col justify-between items-center w-1/4 h-full relative py-4"
       v-for="data in mobileNav"
       :key="data.text"
-      :to="data.link">
+      :to="data.link"
+    >
       <div
         v-if="route.path === data.link"
-        class="absolute top-0 left-0 w-full h-2 bg-red-400 rounded-tl-3xl rounded-tr-3xl"></div>
+        class="absolute top-0 left-0 w-full h-2 bg-red-400 rounded-tl-3xl rounded-tr-3xl"
+      ></div>
       <div class="flex-grow"></div>
       <img :src="data.image" :alt="data.text" class="w-6 h-6" />
     </RouterLink>
@@ -104,6 +102,7 @@ import image1 from "../../assets/homeSvg/home.svg";
 import image2 from "../../assets/homeSvg/about.svg";
 import image3 from "../../assets/homeSvg/product.svg";
 import image4 from "../../assets/homeSvg/blog.svg";
+import image6 from "../../assets/homeSvg/contact.svg";
 import Button from "./Button.vue";
 import { useToast } from "../../store/toast";
 const toast = useToast();
@@ -131,6 +130,11 @@ const mobileNav = ref([
     image: image2,
     text: "About",
     link: "/about",
+  },
+  {
+    image: image6,
+    text: "Contact",
+    link: "/contacts",
   },
   {
     image: image3,
