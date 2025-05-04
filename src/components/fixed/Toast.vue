@@ -11,5 +11,3 @@
 import { useToast } from '../../store/toast';
 const toast = useToast()
 </script>
-
-<style scoped></style>

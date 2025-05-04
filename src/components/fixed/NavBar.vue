@@ -27,6 +27,9 @@
       <RouterLink class="linkStyles" active-class="active" to="/about"
         >About</RouterLink
       >
+      <RouterLink to="/contacts" active-class="active">
+        <p>Contact</p>
+      </RouterLink>
       <RouterLink class="linkStyles" active-class="active" to="/products"
         >Products</RouterLink
       >
@@ -56,14 +59,6 @@
           >
             <p class="text-red-200">{{ store.cartLength }}</p>
           </div>
-        </RouterLink>
-        <RouterLink
-          to="/contacts"
-          class="hover:text-red-300 duration-150"
-          active-class="active"
-        >
-          <img src="../../assets/contact.svg" alt="Contact" />
-          <p>Contact</p>
         </RouterLink>
         <Button class="bg-red-300 p-2 mt-1 hover:bg-red-400" @click="logOut"
           >LogOut</Button
@@ -111,6 +106,7 @@ import image2 from "../../assets/homeSvg/about.svg";
 import image3 from "../../assets/homeSvg/product.svg";
 import image4 from "../../assets/homeSvg/blog.svg";
 import image5 from "../../assets/homeSvg/chat.svg";
+import image6 from "../../assets/homeSvg/contact.svg";
 import Button from "./Button.vue";
 import { useToast } from "../../store/toast";
 const toast = useToast();
@@ -138,6 +134,11 @@ const mobileNav = ref([
     image: image2,
     text: "About",
     link: "/about",
+  },
+  {
+    image: image6,
+    text: "Contact",
+    link: "/contacts",
   },
   {
     image: image3,

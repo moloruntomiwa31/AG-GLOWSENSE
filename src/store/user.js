@@ -26,6 +26,7 @@ export const useUserStore = defineStore("userStore", () => {
         last_name: lastName,
         phone_number: phoneNumber,
         email: email,
+        isAdmin: false,
       });
     }
   };
@@ -55,6 +56,7 @@ export const useUserStore = defineStore("userStore", () => {
           first_name: user.displayName.split(" ")[0],
           last_name: user.displayName.split(" ")[1],
           email: user.email,
+          isAdmin: false,
         });
       }
       user.value = { ...user, ...userDoc.data() };
