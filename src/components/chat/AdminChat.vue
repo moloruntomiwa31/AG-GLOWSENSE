@@ -1,60 +1,64 @@
 <template>
-  <div class="flex flex-col h-full">
-    <div class="flex-grow overflow-y-auto space-y-2 p-4">
-      <div v-if="messages.length === 0" class="text-gray-500 text-center mt-10 text-2xl">
-        👨‍💼 This is the admin chat. Leave a message and we'll respond.
-      </div>
-      <TransitionGroup name="message" tag="div">
-        <Messages
-          v-for="(message, index) in messages"
-          :key="index"
-          :message="message"
-        />
-      </TransitionGroup>
-    </div>
+  <div class="flex h-full">
+    <!-- Admin: Show user list -->
+    <!-- <UserList v-if="user.isAdmin" :userList="users" @select-user="selectUser" /> -->
 
-    <form
-      class="flex items-center gap-2 border-t p-4 bg-white"
-      @submit.prevent="sendMessage"
-    >
-      <input
-        v-model="inputMessage"
-        type="text"
-        placeholder="Write a message to admin..."
-        class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-      />
-      <button
-        :disabled="!inputMessage || isSending"
-        type="submit"
-        class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 disabled:opacity-50"
+    <!-- Main Chat Area -->
+    <div class="flex flex-col flex-grow">
+      <div class="flex-grow overflow-y-auto space-y-2 p-4">
+        <div
+          v-if="!user.isAdmin && messages.length === 0"
+          class="text-center text-gray-500 text-2xl mt-10"
+        >
+          Start a chat with admin
+        </div>
+        <div
+          v-else-if="user.isAdmin"
+          class="text-center text-gray-500 text-2xl mt-10"
+        >
+          Select a user to chat with
+        </div>
+
+        <TransitionGroup v-else name="message" tag="div">
+          <Messages
+            v-for="(message, index) in messages"
+            :key="index"
+            :message="message"
+          />
+        </TransitionGroup>
+      </div>
+
+      <!-- Chat Input -->
+      <form
+        class="flex items-center gap-2 border-t p-4 bg-white"
       >
-        {{ isSending ? "..." : "Send" }}
-      </button>
-    </form>
+        <input
+          v-model="inputMessage"
+          type="text"
+          placeholder="Type a message..."
+          class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <button
+          :disabled="!inputMessage || isSending"
+          type="submit"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:opacity-50"
+        >
+          {{ isSending ? "..." : "Send" }}
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useUserStore } from "@/store/user";
+import { storeToRefs } from "pinia";
 import Messages from "./Messages.vue";
 
 const inputMessage = ref("");
-const messages = ref([]);
 const isSending = ref(false);
+const messages = ref([]);
 
-const sendMessage = async () => {
-  if (!inputMessage.value.trim()) return;
-
-  isSending.value = true;
-  messages.value.push({ content: inputMessage.value, isUser: true });
-
-  setTimeout(() => {
-    messages.value.push({
-      content: "Thanks! An admin will respond shortly. ✅",
-      isUser: false,
-    });
-    isSending.value = false;
-    inputMessage.value = "";
-  }, 1000);
-};
+const { user } = storeToRefs(useUserStore());
 </script>

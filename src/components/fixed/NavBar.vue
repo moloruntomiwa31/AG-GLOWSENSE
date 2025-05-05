@@ -1,5 +1,6 @@
 <template>
   <header
+    v-if="route.path !== '/chat'"
     class="mainStyles items-center text-white min-w-full sticky top-0 pb-8 z-index"
   >
     <div
@@ -77,7 +78,8 @@
   </header>
   <!-- mobile -->
   <div
-    class="fixed bottom-0 w-full h-[50px] flex justify-around items-center px-2 shadow-md bg-neutral-50 rounded-tl-3xl rounded-tr-3xl text-[#463333] lg:hidden z-index"
+    v-if="route.path !== '/chat'"
+    class="fixed bottom-0 w-full h-[50px] flex justify-around items-center px-2 bg-neutral-50 rounded-tl-3xl rounded-tr-3xl text-[#463333] lg:hidden z-index shadow-[0px_30px_20px_0px_rgba(0,0,0,0.5)]"
   >
     <RouterLink
       class="flex flex-col justify-between items-center w-1/5 h-full relative py-4"

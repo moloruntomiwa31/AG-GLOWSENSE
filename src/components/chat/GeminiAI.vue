@@ -2,7 +2,10 @@
   <div class="flex flex-col h-full">
     <!-- Chat history -->
     <div class="flex-grow overflow-y-auto space-y-2 p-4">
-      <div v-if="messages.length === 0" class="text-gray-500 text-center mt-10 text-2xl">
+      <div
+        v-if="messages.length === 0"
+        class="text-gray-500 text-center mt-10 text-2xl"
+      >
         🤖 Hello, I'm your Beauty AI Assistant. Ask me anything!
       </div>
       <TransitionGroup name="message" tag="div">
@@ -14,10 +17,9 @@
       </TransitionGroup>
     </div>
 
-    <!-- Input field -->
     <form
-      class="flex items-center gap-2 border-t p-4 bg-white"
-      @submit.prevent="fetchAnswer"
+      class="flex items-center gap-2 border-t p-4 bg-white shadow-[0px_30px_20px_0px_rgba(0,0,0,0.5)]"
+      @submit.prevent="handleResponse"
     >
       <input
         v-model="inputQuestion"
@@ -38,31 +40,12 @@
 
 <script setup>
 import { ref } from "vue";
-import { useGetGenerativeModelGP } from "../../composables/useGetGenerativeModelGP.js";
 import Messages from "./Messages.vue";
-
+import useAiChat from "../../composables/useAiChat";
+const { messages, fetchAnswer, isLoading } = useAiChat();
 const inputQuestion = ref("");
-const messages = ref([]);
-const isLoading = ref(false);
-
-const fetchAnswer = async () => {
-  if (!inputQuestion.value.trim()) return;
-  isLoading.value = true;
-
-  messages.value.push({ content: inputQuestion.value, isUser: true });
-
-  try {
-    const aiReply = await useGetGenerativeModelGP(inputQuestion.value);
-    messages.value.push({ content: aiReply, isUser: false });
-  } catch (error) {
-    messages.value.push({
-      content: "⚠️ Sorry, something went wrong.",
-      isUser: false,
-    });
-    console.error(error);
-  } finally {
-    inputQuestion.value = "";
-    isLoading.value = false;
-  }
+const handleResponse = async () => {
+  await fetchAnswer(inputQuestion.value);
+  inputQuestion.value = "";
 };
 </script>

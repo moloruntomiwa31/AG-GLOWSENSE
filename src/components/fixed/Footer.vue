@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="flex flex-col-reverse space-y-6 md:space-y-0 md:flex-row justify-around pt-12 pb-40 px-8 md:p-12 gap-4"
+    class="flex flex-col-reverse md:flex-row justify-around  px-8 pt-10 pb-20 lg:pb-10 gap-4"
   >
     <div class="flex flex-col items-start md:w-1/3">
       <div class="flex items-center">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <nav
-      class="flex md:justify-around gap-4 items-center justify-start md:w-1/3"
+      class="flex md:justify-around gap-y-6 items-center justify-start md:w-1/3"
     >
       <div class="flex flex-col justify-center">
         <RouterLink class="linkStyles" active-class="active" to="/"
@@ -31,23 +31,23 @@
         >
       </div>
       <div
-        class="flex flex-col justify-between space-y-12"
+        class="flex flex-col justify-between"
         v-if="userData.user"
       >
         <RouterLink to="/cart" class="linkStyles">Cart</RouterLink>
         <RouterLink to="/contacts" class="linkStyles">Contact Us</RouterLink>
       </div>
       <div
-        class="flex flex-col justify-between space-y-12"
+        class="flex flex-col justify-between"
         v-if="!userData.user"
       >
         <RouterLink to="/signup" class="linkStyles">Sign Up</RouterLink>
         <RouterLink to="/login" class="linkStyles">Log In</RouterLink>
       </div>
     </nav>
-    <nav class="flex flex-col gap-4 md:justify-center items-start md:w-1/3">
+    <nav class="flex flex-col gap-6 md:justify-center items-start md:w-1/3">
       <h3>Follow us on our social platforms</h3>
-      <div class="flex gap-4 items-center">
+      <div class="flex gap-2 items-center">
         <a
           href="https://web.facebook.com/profile.php?id=100057287476364"
           target="_blank"
@@ -83,7 +83,7 @@
           </svg>
         </a>
       </div>
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center gap-2">
         <img
           src="../../assets/call.svg"
           alt=""
@@ -91,7 +91,7 @@
         />
         <p>+234811 300 5790</p>
       </div>
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center gap-2">
         <img
           src="../../assets/email.svg"
           alt=""
