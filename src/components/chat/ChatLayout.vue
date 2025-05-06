@@ -59,7 +59,6 @@
     </aside>
 
     <!-- Confirmation Modal -->
-
     <Teleport to="body">
       <div
         v-if="showConfirmModal"
@@ -100,6 +99,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useUserStore } from "../../store/user";
+import { useAiMessagesStore } from "../../store/aiMessages";
 import useAiChat from "../../composables/useAiChat";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
@@ -107,8 +107,9 @@ import GeminiAI from "./GeminiAI.vue";
 import AdminChat from "./AdminChat.vue";
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
+const { messages } = storeToRefs(useAiMessagesStore());
 const router = useRouter();
-const { clearChats, messages } = useAiChat();
+const { clearChats } = useAiChat();
 
 const activeTab = ref("ai");
 const showConfirmModal = ref(false);

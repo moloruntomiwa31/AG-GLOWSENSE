@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-col h-full">
     <!-- Chat history -->
-    <div class="flex-grow overflow-y-auto space-y-2 p-4">
+    <div
+      ref="chatContainer"
+      class="flex-grow overflow-y-auto space-y-2 p-4 scroll-smooth"
+    >
       <div
         v-if="messages.length === 0"
         class="text-gray-500 text-center mt-10 text-2xl"
@@ -39,13 +42,46 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch, nextTick } from "vue";
 import Messages from "./Messages.vue";
 import useAiChat from "../../composables/useAiChat";
+
 const { messages, fetchAnswer, isLoading } = useAiChat();
 const inputQuestion = ref("");
+const chatContainer = ref(null);
+
+// Auto-scroll to the bottom when new messages arrive
+watch(
+  () => [...messages.value],
+  async () => {
+    await nextTick();
+    scrollToBottom();
+  },
+  { deep: true }
+);
+
+const scrollToBottom = () => {
+  if (chatContainer.value) {
+    chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
+  }
+};
+
 const handleResponse = async () => {
   await fetchAnswer(inputQuestion.value);
   inputQuestion.value = "";
+  await nextTick();
+  scrollToBottom();
 };
 </script>
+
+<style scoped>
+.message-enter-active,
+.message-leave-active {
+  transition: all 0.3s ease;
+}
+.message-enter-from,
+.message-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+</style>

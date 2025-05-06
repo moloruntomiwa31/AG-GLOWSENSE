@@ -36,15 +36,3 @@ const formatTime = (date) => {
   });
 };
 </script>
-
-<style scoped>
-.message-enter-active,
-.message-leave-active {
-  transition: all 0.3s ease;
-}
-.message-enter-from,
-.message-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
-</style>

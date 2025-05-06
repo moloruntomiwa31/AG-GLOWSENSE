@@ -9,14 +9,14 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { useUserStore } from "../store/user";
-import { useGetGenerativeModelGP } from "./useGetGenerativeModelGP";
+import { useGenAi } from "./useGenAi";
 import { useToast } from "../store/toast";
-import { ref, watch } from "vue";
+import { watch } from "vue";
+import { useAiMessagesStore } from "../store/aiMessages";
+import { storeToRefs } from "pinia";
 
 export default function useAiChat() {
-  const messages = ref([]);
-  const isLoading = ref(false);
-
+  const { messages, isLoading } = storeToRefs(useAiMessagesStore());
   const { user } = useUserStore();
   const { addToast } = useToast();
 
@@ -63,14 +63,13 @@ export default function useAiChat() {
 
   // Clear all chats
   const clearChats = async () => {
+    messages.value = [];
     try {
       const aiChatRef = collection(db, `users/${user.uid}/aiChats`);
       const querySnapshot = await getDocs(query(aiChatRef));
       querySnapshot.forEach(async (doc) => {
         await deleteDoc(doc.ref);
       });
-      addToast("All chats cleared", "success");
-      messages.value = [];
     } catch (error) {
       addToast("Error clearing chats", "error");
     }
@@ -90,7 +89,7 @@ export default function useAiChat() {
     await saveMessageToFirestore(userQuestion.content, true);
 
     try {
-      const aiReply = await useGetGenerativeModelGP(question);
+      const aiReply = await useGenAi(question);
       const response = {
         content: aiReply,
         isUser: false,
